@@ -22,9 +22,7 @@
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<!-- Typekit >
-<script type="text/javascript" src="//use.typekit.net/########.js"></script>
-<script type="text/javascript">try{Typekit.load();}catch(e){}</script> -->
+<link href="https://fonts.googleapis.com/css?family=Cormorant:600|Source+Sans+Pro:400,700" rel="stylesheet">
 
 <?php
 wp_head();
@@ -45,6 +43,15 @@ if (function_exists('gtm4wp_the_gtm_tag')) {
     <div class="body-wrap">
         <div id="page" class="hfeed site">
             <header id="masthead" class="site-header" role="banner">
+                <div class="dropdown" id="ancillary-nav-dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="true" id="jumpTo" aria-expanded="false">
+                        jump to
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+<?php
+wp_nav_menu(array('theme_location' => 'ancillary', 'container' => false, 'menu_class' => 'dropdown-menu dropdown-menu-right'));
+?>
+                </div>
                 <div class="container">
                     <nav class="menu-nav">
                         <button type="button" class="menu-button" href="#"><span class="sr-only">Open Menu</span><i class="fa fa-bars"></i></button>

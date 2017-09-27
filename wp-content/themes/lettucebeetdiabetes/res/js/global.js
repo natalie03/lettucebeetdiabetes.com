@@ -8,6 +8,7 @@ $(document).ready(function () {
         menu_button: $('.menu-button'),
         menu_active_class: 'menu-active'
     });
+    prepare_dropdowns();
 });
 
 function prepare_fitvid() {
@@ -36,5 +37,16 @@ function prepare_menu(options) {
 
     $('.btn-menu-dropdown').on('click', function (e) {
         $(this).siblings('.sub-menu').collapse('toggle');
+    });
+}
+function prepare_dropdowns() {
+    // Add slideDown animation to Bootstrap dropdown when expanding.
+    $('.dropdown').on('show.bs.dropdown', function() {
+      $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+    });
+
+    // Add slideUp animation to Bootstrap dropdown when collapsing.
+    $('.dropdown').on('hide.bs.dropdown', function() {
+      $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
     });
 }

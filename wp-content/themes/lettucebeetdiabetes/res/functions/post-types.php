@@ -1,8 +1,8 @@
 <?php
 function silencio_register_post_types() {
-    $singular = 'Slider';
-    $plural = 'Sliders';
-    $slug = 'slider';
+    $singular = 'Recipe';
+    $plural = 'Recipes';
+    $slug = 'recipes';
 
     register_post_type(
         'sil_' . $slug,
@@ -20,6 +20,7 @@ function silencio_register_post_types() {
             ),
             'public' => true,
             'supports' => array('title', 'editor', 'author', 'excerpt', 'revisions', 'thumbnail'),
+            'taxonomies' => array('post_tag','category'),
             'has_archive' => true,
             'rewrite' => array('slug' => $slug)
         )
