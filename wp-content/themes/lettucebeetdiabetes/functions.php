@@ -188,6 +188,7 @@ add_filter('gform_submit_button', function ($button, $form) {
 add_filter('gform_validation_message', function ($message, $form) {
     return "<div class=\"alert alert-danger\"><h4>Error</h4><p>" . esc_html__('There was a problem with your submission.', 'gravityforms') . ' ' . esc_html__('Errors have been highlighted below.', 'gravityforms') . '</p></div>';
 }, 10, 2);
+
 add_filter('gform_confirmation', function ($confirmation, $form, $entry, $ajax) {
     foreach ($form['confirmations'] as $confirm) {
         if ($confirm['type'] === 'message') {
@@ -282,3 +283,9 @@ function silencio_partial($path, $args = [], $echo = true) {
     include(locate_template($path . '.php'));
     return ob_get_clean();
 }
+function wpa_cpt_tags( $query ) {
+    if (($query->is_tag() && $query->is_main_query()) || ($query->is_category() && $query->is_main_query())) {
+        $query->set('post_type', array( 'post', 'sil_recipes' ) );
+    }
+}
+add_action( 'pre_get_posts', 'wpa_cpt_tags' );

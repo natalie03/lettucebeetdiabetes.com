@@ -8,8 +8,9 @@
 @black: #000;
 @white: #fff;
 @grey: #F5F5F5;
-@primary: #175447; //blue
+@primary: #06401d; //blue
 @secondary: #f1efec; //light
+@box-shadow: 0 6px 12px rgba(0,0,0,.175);
 
 // Fonts
 @heading: 'Cormorant', serif;
@@ -66,10 +67,19 @@
     &.focus,
     &:active,
     &.active,
+    &:active &:hover,
     .open > .dropdown-toggle& {
         color: @hover-color;
         background-color: @hover-background;
         border-color: @hover-border;
+        highlight: 0;
+        outline: 0;
+        box-shadow: none;
+        &:focus {
+            color: @hover-color;
+            background-color: @hover-background;
+            border-color: @hover-border;
+        }
     }
 
     &:visited {

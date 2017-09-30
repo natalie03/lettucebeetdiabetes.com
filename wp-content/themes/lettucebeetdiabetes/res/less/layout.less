@@ -20,11 +20,13 @@ body {
 #page {
     width: 100%;
     border-left: 30px solid @secondary;
+    border-right: 30px solid @secondary;
 }
 
 
 #colophon {
     .make-row;
+    margin-right: -30px;
 }
 
 #content {
@@ -32,20 +34,20 @@ body {
     .backface-visibility(hidden); // stop text wiggle on transition in Chrome
     margin: 20px auto 0 auto;
     .respond(@screen-sm, {
-        border-right: 15px solid @secondary;
+        border-right: 18px solid @black;
     });
 
     #primary-full {
         .make-sm-column(10);
         .make-sm-column-offset(1);
+        padding-bottom: 30px;
         .wp-post-image {
             width: 100%;
-            margin-bottom: 30px;
-            border-bottom: 18px solid black;
         }
     }
     #primary {
         .make-sm-column(8);
+        padding-bottom: 30px;
     }
     #secondary {
         .make-sm-column(4);
@@ -57,7 +59,6 @@ body {
 }
 .page-template-default {
     #content {
-        border-right-color: @black;
         padding-right: 0 !important;
     }
 }
@@ -102,33 +103,42 @@ body {
         .fa {
             margin: 0 12px;
         }
-        .dropdown-menu {
-            font-weight: @bold;
-            letter-spacing: 1px;
-            margin: 0;
-            padding: 0;
-            border: 0;
-            border-radius: 0;
-            li {
-                a {
-                    font-size: 1.15em;
-                    font-weight: @bold;
-                    padding: 15px 65px 15px 30px;
-                    &:hover {
-                        background-color: @secondary;
-                    }
-                }
-            }
+        .admin-bar & {
+            .respond(@screen-md, {
+                display: block;
+                position: fixed;
+                right: 0px;
+                top: 61px;
+            });
         }
         .respond(@screen-md, {
             display: block;
-            position: absolute;
+            position: fixed;
             right: 0px;
             top: 29px;
+            box-shadow: @box-shadow;
+            z-index: @z-index-8;
         });
     }
 }
-
+.dropdown-menu {
+    font-weight: @bold;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    li {
+        a {
+            font-size: 1.15em;
+            font-weight: @bold;
+            padding: 15px 65px 15px 30px;
+            &:hover {
+                background-color: @secondary;
+            }
+        }
+    }
+}
 /* Navigation
 ----------------------------------------------- */
 .menu-nav {
@@ -264,6 +274,16 @@ body {
                 display: inline-block;
                 margin: 0 1%;
             });
+            &:hover {
+                .respond(@screen-sm, {
+                    ul.sub-menu {
+                        display: block;
+                        position: absolute;
+                        right: 0;
+                        top: 62px;
+                    }
+                });
+            }
 
             a {
                 display: block;
@@ -297,41 +317,32 @@ body {
                 display: none;
 
                 .respond(@screen-sm, {
-                    background: @primary;
+                    background: @white;
                     position: absolute;
                     margin: 0;
                     padding: 0;
                     min-width: 220px;
-                    left: 0;
+                    top: 62px;
                     text-align: left;
+                    box-shadow: @box-shadow;
                 });
 
                 li {
                     border-left: 0 none !important;
                     display: block;
+                    margin: 0;
 
                     a {
-                        color: @white;
-                        padding: 8px 16px;
+                        color: @black;
+                        letter-spacing: 1px;
+                        font-weight: @bold;
+                        padding: 15px 65px 15px 35px;
                         display: block;
+                        border-bottom: 0;
 
                         &:hover {
-                            background: @black;
-                            color: @white !important;
+                            background: @secondary;
                         }
-                    }
-
-                    &:hover {
-                        .respond(@screen-sm, {
-                            ul.sub-menu {
-                                background: @primary;
-                                color: @white;
-                                display: block;
-                                position: absolute;
-                                left: 220px;
-                                top: 0;
-                            }
-                        });
                     }
 
                     ul.sub-menu {
@@ -341,9 +352,7 @@ body {
             }
 
             &.current_page_item,
-            &.current-menu-item,
-            &.current-menu-parent,
-            &.current_page_parent {
+            &.current-menu-item {
                 > a {
                     border-color: @primary;
                 }
@@ -426,15 +435,19 @@ body {
 }
 
 .archive-article {
-    border-bottom: 1px solid @grey;
-    margin-bottom: 24px;
-    padding-bottom: 23px;
+    .wp-post-image {
+        box-shadow: @box-shadow;
+    }
+    .make-sm-column(4);
 
     .entry-header {
         margin-bottom: 14px;
 
         .entry-title {
             margin: 0;
+            .respond(@screen-md, {
+                font-size: 2em;
+            });
         }
 
         .entry-meta {
@@ -478,15 +491,22 @@ body {
     margin: 0;
     list-style: none;
 }
-
-.taxonomy-list a {
-    background-color: @primary;
-    padding: 4px 10px;
+.taxonomy-list,
+.category-list {
+    display: inline-block;
+    line-height: 2.2;
+}
+.taxonomy-list a,
+.category-list a {
+    color: @primary;
     margin-right: 3px;
-    color: @white;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    font-weight: @bold;
 
     &:hover {
-        background-color: lighten(@primary, 5%);
+        background-color: @secondary;
+        color: @black;
     }
 }
 
@@ -766,4 +786,16 @@ body {
 .pagination > li > span:hover,
 .pagination > li > span:focus {
     color: @black;
+}
+
+.form-control {
+    border-radius: 0;
+    box-shadow: @box-shadow;
+    border: 0;
+    border-bottom: 10px solid @black;
+    min-height: 44px;
+    &:focus {
+        box-shadow: @box-shadow;
+        border-bottom-color: @primary;
+    }
 }

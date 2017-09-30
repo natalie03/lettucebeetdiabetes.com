@@ -15,7 +15,7 @@ if (isset($options['theme_option_street_txt_input'], $options['theme_option_city
 
             <footer id="colophon" class="site-footer" role="contentinfo">
                 <div class="container">
-                    <!-- <nav id="footer-nav" role="navigation">
+                    <nav id="footer-nav" role="navigation">
 <?php
 wp_nav_menu(array('theme_location' => 'footer-menu'));
 ?>
